@@ -5,7 +5,7 @@ import {
     SearchIconWrapper,
 } from "./styledComponents";
 import SearchIcon from "@mui/icons-material/Search";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../utils/hooks";
 import {
     setSearchFilterValue,
     selectAuditOfActions,

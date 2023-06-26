@@ -11,16 +11,15 @@ import Search from "../Search";
 import RefreshIconBtn from "../RefreshIconBtn";
 import FilterList from "../FilterList";
 import { actionsApi } from "../../Redux/services/actionsApi";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch } from "../../utils/hooks";
 import { setActionsList } from "../../Redux/auditOfActionsSlice";
 
 export default function CollapsedToolbar() {
     const [openFilterList, setOpenFilterList] = useState(false);
     const dispatch = useAppDispatch();
-    const { data, refetch } = actionsApi.useFetchActionsListQuery("");
+    const { refetch } = actionsApi.useFetchActionsListQuery("");
     function handleRefresh() {
         refetch();
-        dispatch(setActionsList(data));
     }
 
     return (

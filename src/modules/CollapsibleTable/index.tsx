@@ -8,7 +8,7 @@ import { TKeyOfActionInfo, TActionInfo, ISortParams } from "../../utils/types";
 import CollapsedTableHead from "../CollapsedTableHead";
 import Row from "../CollapsedTableRow";
 import CollapsedToolbar from "../CollapsedToolbar";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../utils/hooks";
 import {
     selectAuditOfActions,
     setActionsList,
