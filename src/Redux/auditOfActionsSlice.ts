@@ -13,7 +13,6 @@ export interface IAuditOfActionsState {
     statusFilterValue: number | string;
     startDateFilterValue: number | null;
     endDateFilterValue: number | null;
-    filteredActionsList: TActionInfo[];
 }
 
 const initialState: IAuditOfActionsState = {
@@ -25,7 +24,6 @@ const initialState: IAuditOfActionsState = {
     statusFilterValue: "",
     startDateFilterValue: null,
     endDateFilterValue: null,
-    filteredActionsList: [],
 };
 
 export const auditOfActionsSlice = createSlice({

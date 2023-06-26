@@ -3,7 +3,7 @@ import { Table } from "./styledComponents";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
-import { sortedRows, filteredActionsList } from "../../utils/utils";
+import { sortedRows, filterActionsList } from "../../utils/utils";
 import { TKeyOfActionInfo, TActionInfo, ISortParams } from "../../utils/types";
 import CollapsedTableHead from "../CollapsedTableHead";
 import Row from "../CollapsedTableRow";
@@ -33,7 +33,8 @@ export default function CollapsibleTable() {
         },
         [sort]
     );
-    const { data } = actionsApi.useFetchActionsListQuery("");
+    const { data, isError, isLoading } =
+        actionsApi.useFetchActionsListQuery("");
     const dispatch = useAppDispatch();
     const auditOfActionsState = useAppSelector(selectAuditOfActions);
     const {
@@ -52,20 +53,8 @@ export default function CollapsibleTable() {
     }, [data]);
 
     const filteredRows: Array<TActionInfo> | null = useMemo(() => {
-        if (!filteredActionsList || filteredActionsList.length === 0) {
-            return null;
-        }
-        return filteredActionsList(auditOfActionsState);
-    }, [
-        urlFilterValue,
-        userFilterValue,
-        methodFilterValue,
-        searchFilterValue,
-        statusFilterValue,
-        startDateFilterValue,
-        endDateFilterValue,
-        actionsList,
-    ]);
+        return filterActionsList(auditOfActionsState);
+    }, [auditOfActionsState]);
 
     const visibleRows: Array<TActionInfo> | null = React.useMemo(() => {
         if (!filteredRows || filteredRows.length === 0) {
@@ -86,18 +75,27 @@ export default function CollapsibleTable() {
             component={Paper}
         >
             <CollapsedToolbar />
-            <Table aria-label="collapsible table">
-                <CollapsedTableHead
-                    order={sort.order}
-                    orderBy={sort.orderBy}
-                    onRequestSort={handleRequestSort}
-                />
-                <TableBody>
-                    {visibleRows.map((row, index) => {
-                        return <Row key={index} row={row} />;
-                    })}
-                </TableBody>
-            </Table>
+            {isError && (
+                <h2 style={{ textAlign: "center", color: "red" }}>
+                    Error {isError}
+                </h2>
+            )}
+            {isLoading ? (
+                <h2 style={{ textAlign: "center" }}>Loading...</h2>
+            ) : (
+                <Table aria-label="collapsible table">
+                    <CollapsedTableHead
+                        order={sort.order}
+                        orderBy={sort.orderBy}
+                        onRequestSort={handleRequestSort}
+                    />
+                    <TableBody>
+                        {visibleRows.map((row, index) => {
+                            return <Row key={index} row={row} />;
+                        })}
+                    </TableBody>
+                </Table>
+            )}
         </TableContainer>
     );
 }

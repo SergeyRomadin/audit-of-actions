@@ -78,7 +78,7 @@ const search = (el: TActionInfo, searchFilterValue: string) => {
     }
 };
 
-export function filteredActionsList(
+export function filterActionsList(
     state: IAuditOfActionsState
 ): TActionInfo[] | null {
     const {
@@ -92,7 +92,7 @@ export function filteredActionsList(
         actionsList,
     } = state;
 
-    if (!actionsList || actionsList.length === 0) return null;
+    if (!actionsList || actionsList.length === 0) return [];
 
     return actionsList.filter((item) => {
         if (urlFilterValue && urlFilterValue !== item.url) {
