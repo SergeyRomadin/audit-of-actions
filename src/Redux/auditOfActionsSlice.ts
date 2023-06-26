@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { TKeyOfActionInfo, TActionInfo } from "../utils/types";
-import { IPayload } from "../utils/types";
-import dayjs, { Dayjs } from "dayjs";
+import { TActionInfo } from "../utils/types";
 
 export interface IAuditOfActionsState {
     actionsList: TActionInfo[];
@@ -30,11 +28,6 @@ export const auditOfActionsSlice = createSlice({
     name: "auditOfActions",
     initialState,
     reducers: {
-        // setValue: (state, action) => {
-        //     const payload: IPayload = action.payload;
-        //     state[payload.name] = action.payload.value;
-        // },
-
         setActionsList: (state, action) => {
             state.actionsList = action.payload;
         },

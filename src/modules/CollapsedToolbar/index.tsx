@@ -6,17 +6,13 @@ import {
     IconButton,
 } from "./styledComponents";
 import FilterListIcon from "@mui/icons-material/FilterList";
-
 import Search from "../Search";
 import RefreshIconBtn from "../RefreshIconBtn";
 import FilterList from "../FilterList";
 import { actionsApi } from "../../Redux/services/actionsApi";
-import { useAppDispatch } from "../../utils/hooks";
-import { setActionsList } from "../../Redux/auditOfActionsSlice";
 
 export default function CollapsedToolbar() {
     const [openFilterList, setOpenFilterList] = useState(false);
-    const dispatch = useAppDispatch();
     const { refetch } = actionsApi.useFetchActionsListQuery("");
     function handleRefresh() {
         refetch();
