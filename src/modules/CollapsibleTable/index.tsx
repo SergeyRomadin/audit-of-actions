@@ -52,7 +52,7 @@ export default function CollapsibleTable() {
         dispatch(setActionsList(data));
     }, [data]);
 
-    const filteredRows: Array<TActionInfo> | null = useMemo(() => {
+    const filteredRows: Array<TActionInfo> = useMemo(() => {
         return filterActionsList(auditOfActionsState);
     }, [auditOfActionsState]);
 
