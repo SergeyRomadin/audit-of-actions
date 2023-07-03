@@ -17,7 +17,7 @@ import { actionsApi } from "../../Redux/services/actionsApi";
 import Snackbar from "@mui/material/Snackbar";
 import { relative } from "path";
 
-const COPYSB_HIDE_DURATION = 200000;
+const COPYSB_HIDE_DURATION = 2000;
 const COPYSB_SX = {
     ".MuiPaper-root": {
         "@media (min-width: 600px)": {
