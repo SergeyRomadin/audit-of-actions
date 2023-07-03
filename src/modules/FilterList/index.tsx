@@ -16,7 +16,7 @@ import {
 } from "../../Redux/auditOfActionsSlice";
 
 const styleSX = {
-    formControl: { maxWidth: "348px", pb: "12px" },
+    formControl: { pb: "12px" },
 };
 
 export default function FilterList() {
@@ -90,6 +90,7 @@ export default function FilterList() {
                     minWidth: 120,
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                    gap: "16px",
                 }}
             >
                 <FormControl fullWidth sx={styleSX.formControl}>
@@ -155,10 +156,12 @@ export default function FilterList() {
             </Box>
             <Box
                 sx={{
+                    position: "relative",
                     width: "100%",
                     minWidth: 120,
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                    gap: "16px",
                 }}
             >
                 <DateRangePickerValue />

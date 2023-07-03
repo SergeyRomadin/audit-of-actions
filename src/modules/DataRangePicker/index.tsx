@@ -8,11 +8,21 @@ import {
     setStartDateFilterValue,
     setEndDateFilterValue,
 } from "../../Redux/auditOfActionsSlice";
+import { Box } from "@mui/material";
 
-const styleSX = {
+const DATA_PICKER_SX = {
     width: "100%",
-    maxWidth: "348px",
     pb: "12px",
+};
+
+const DASH_SX = {
+    background: "black",
+    position: "absolute",
+    left: "25%",
+    top: "50%",
+    height: "2px",
+    width: "5px",
+    transform: "translate(-100%, -8px)",
 };
 
 export default function DateRangePickerValue() {
@@ -23,7 +33,7 @@ export default function DateRangePickerValue() {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-                sx={styleSX}
+                sx={DATA_PICKER_SX}
                 label="Start date"
                 value={startDate}
                 onChange={(newValue) => {
@@ -31,8 +41,9 @@ export default function DateRangePickerValue() {
                     dispatch(setStartDateFilterValue(newValue?.unix()));
                 }}
             />
+            <Box sx={DASH_SX} />
             <DatePicker
-                sx={styleSX}
+                sx={DATA_PICKER_SX}
                 label="End date"
                 value={endDate}
                 onChange={(newValue) => {
