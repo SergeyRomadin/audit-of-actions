@@ -10,8 +10,12 @@ import TelegramIconLink from "../TelegramIconLink";
 import CopyIconBtn from "../CopyIconBtn";
 import { TActionInfo } from "../../utils/types";
 
-export default function CollapsedTableRow(props: { row: TActionInfo }) {
-    const { row } = props;
+export default function CollapsedTableRow(props: {
+    row: TActionInfo;
+    handleOpenCopySB: () => void;
+    handleCloseCopySB: () => void;
+}) {
+    const { row, handleOpenCopySB, handleCloseCopySB } = props;
     const [open, setOpen] = useState(false);
 
     const styleSX = {
@@ -89,6 +93,7 @@ export default function CollapsedTableRow(props: { row: TActionInfo }) {
                             <CopyIconBtn
                                 handlerCopy={() => {
                                     handlerCopy(row.payload);
+                                    handleOpenCopySB();
                                 }}
                             />
                         </Box>
@@ -110,6 +115,7 @@ export default function CollapsedTableRow(props: { row: TActionInfo }) {
                             <CopyIconBtn
                                 handlerCopy={() => {
                                     handlerCopy(row.response);
+                                    handleOpenCopySB();
                                 }}
                             />
                         </Box>
@@ -131,6 +137,7 @@ export default function CollapsedTableRow(props: { row: TActionInfo }) {
                             <CopyIconBtn
                                 handlerCopy={() => {
                                     handlerCopy(row.context);
+                                    handleOpenCopySB();
                                 }}
                             />
                         </Box>

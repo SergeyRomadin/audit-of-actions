@@ -14,6 +14,21 @@ import {
     setActionsList,
 } from "../../Redux/auditOfActionsSlice";
 import { actionsApi } from "../../Redux/services/actionsApi";
+import Snackbar from "@mui/material/Snackbar";
+import { relative } from "path";
+
+const COPYSB_HIDE_DURATION = 200000;
+const COPYSB_SX = {
+    ".MuiPaper-root": {
+        "@media (min-width: 600px)": {
+            minWidth: "100%",
+            boxSizing: "border-box",
+        },
+    },
+    width: "200px",
+    boxSizing: "border-box",
+    opacity: 0.8,
+};
 
 export default function CollapsibleTable() {
     const [sort, setSort] = useState<ISortParams>({
@@ -21,6 +36,7 @@ export default function CollapsibleTable() {
         orderBy: "time",
     });
     const [page, setPage] = useState(0);
+    const [openCopySB, setOpenCopySB] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const handleRequestSort = useCallback(
         (property: TKeyOfActionInfo) => {
@@ -69,6 +85,13 @@ export default function CollapsibleTable() {
         );
     }, [filteredRows, sort, page, rowsPerPage]);
 
+    function handleCloseCopySB() {
+        setOpenCopySB(false);
+    }
+    function handleOpenCopySB() {
+        setOpenCopySB(true);
+    }
+
     return (
         <TableContainer
             sx={{ width: "100vw", position: "relative" }}
@@ -91,11 +114,26 @@ export default function CollapsibleTable() {
                     />
                     <TableBody>
                         {visibleRows.map((row, index) => {
-                            return <Row key={index} row={row} />;
+                            return (
+                                <Row
+                                    handleOpenCopySB={handleOpenCopySB}
+                                    handleCloseCopySB={handleCloseCopySB}
+                                    key={index}
+                                    row={row}
+                                />
+                            );
                         })}
                     </TableBody>
                 </Table>
             )}
+            <Snackbar
+                sx={COPYSB_SX}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                open={openCopySB}
+                onClose={handleCloseCopySB}
+                autoHideDuration={COPYSB_HIDE_DURATION}
+                message="Copied"
+            />
         </TableContainer>
     );
 }
