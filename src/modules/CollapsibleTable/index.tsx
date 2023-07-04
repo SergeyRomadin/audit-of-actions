@@ -91,25 +91,27 @@ export default function CollapsibleTable() {
             {isLoading ? (
                 <h2 style={{ textAlign: "center" }}>Loading...</h2>
             ) : (
-                <Table aria-label="collapsible table">
-                    <CollapsedTableHead
-                        order={sort.order}
-                        orderBy={sort.orderBy}
-                        onRequestSort={handleRequestSort}
-                    />
-                    <TableBody>
-                        {visibleRows.map((row, index) => {
-                            return (
-                                <Row
-                                    handleOpenCopySB={handleOpenCopySB}
-                                    handleCloseCopySB={handleCloseCopySB}
-                                    key={index}
-                                    row={row}
-                                />
-                            );
-                        })}
-                    </TableBody>
-                </Table>
+                <Box sx={{ width: "100%", overflow: "scroll" }}>
+                    <Table aria-label="collapsible table">
+                        <CollapsedTableHead
+                            order={sort.order}
+                            orderBy={sort.orderBy}
+                            onRequestSort={handleRequestSort}
+                        />
+                        <TableBody>
+                            {visibleRows.map((row, index) => {
+                                return (
+                                    <Row
+                                        handleOpenCopySB={handleOpenCopySB}
+                                        handleCloseCopySB={handleCloseCopySB}
+                                        key={index}
+                                        row={row}
+                                    />
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </Box>
             )}
             <Snackbar
                 sx={COPYSB_SX}
