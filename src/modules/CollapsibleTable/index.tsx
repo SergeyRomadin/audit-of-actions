@@ -1,8 +1,6 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import { Table } from "./styledComponents";
 import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import Paper from "@mui/material/Paper";
 import { sortedRows, filterActionsList } from "../../utils/utils";
 import { TKeyOfActionInfo, TActionInfo, ISortParams } from "../../utils/types";
 import CollapsedTableHead from "../CollapsedTableHead";
@@ -15,7 +13,7 @@ import {
 } from "../../Redux/auditOfActionsSlice";
 import { actionsApi } from "../../Redux/services/actionsApi";
 import Snackbar from "@mui/material/Snackbar";
-import { relative } from "path";
+import { Box } from "@mui/material";
 
 const COPYSB_HIDE_DURATION = 2000;
 const COPYSB_SX = {
@@ -53,16 +51,6 @@ export default function CollapsibleTable() {
         actionsApi.useFetchActionsListQuery("");
     const dispatch = useAppDispatch();
     const auditOfActionsState = useAppSelector(selectAuditOfActions);
-    const {
-        urlFilterValue,
-        userFilterValue,
-        methodFilterValue,
-        searchFilterValue,
-        statusFilterValue,
-        startDateFilterValue,
-        endDateFilterValue,
-        actionsList,
-    } = auditOfActionsState;
 
     useEffect(() => {
         dispatch(setActionsList(data));
@@ -93,10 +81,7 @@ export default function CollapsibleTable() {
     }
 
     return (
-        <TableContainer
-            sx={{ width: "100vw", position: "relative" }}
-            component={Paper}
-        >
+        <Box sx={{ width: "100vw", position: "relative" }}>
             <CollapsedToolbar />
             {isError && (
                 <h2 style={{ textAlign: "center", color: "red" }}>
@@ -134,6 +119,6 @@ export default function CollapsibleTable() {
                 autoHideDuration={COPYSB_HIDE_DURATION}
                 message="Copied"
             />
-        </TableContainer>
+        </Box>
     );
 }

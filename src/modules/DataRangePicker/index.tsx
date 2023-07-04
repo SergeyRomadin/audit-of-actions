@@ -22,7 +22,7 @@ const DASH_SX = {
     top: "50%",
     height: "2px",
     width: "5px",
-    transform: "translate(-100%, -8px)",
+    transform: "translate(-125%, -8px)",
 };
 
 export default function DateRangePickerValue() {
