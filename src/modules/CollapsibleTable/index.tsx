@@ -81,7 +81,14 @@ export default function CollapsibleTable() {
     }
 
     return (
-        <Box sx={{ width: "100vw", position: "relative" }}>
+        <Box
+            sx={{
+                width: "100vw",
+                position: "relative",
+                background: "#F5F5FA",
+                borderRadius: "12px",
+            }}
+        >
             <CollapsedToolbar />
             {isError && (
                 <h2 style={{ textAlign: "center", color: "red" }}>
