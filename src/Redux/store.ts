@@ -1,14 +1,14 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import auditOfActionsReducer from "./auditOfActionsSlice";
-import { actionsApi } from "./services/actionsApi";
+import { auditApi } from "./services/auditApi";
 
 export const store = configureStore({
     reducer: {
         auditOfActions: auditOfActionsReducer,
-        [actionsApi.reducerPath]: actionsApi.reducer,
+        [auditApi.reducerPath]: auditApi.reducer,
     },
     middleware: (getDefaultMiddleware) => {
-        return getDefaultMiddleware().concat(actionsApi.middleware);
+        return getDefaultMiddleware().concat(auditApi.middleware);
     },
 });
 

@@ -9,11 +9,11 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import Search from "../Search";
 import RefreshIconBtn from "../RefreshIconBtn";
 import FilterList from "../FilterList";
-import { actionsApi } from "../../Redux/services/actionsApi";
+import { auditApi } from "../../Redux/services/auditApi";
 
 export default function CollapsedToolbar() {
     const [openFilterList, setOpenFilterList] = useState(false);
-    const { refetch } = actionsApi.useFetchActionsListQuery("");
+    const { refetch } = auditApi.useFetchActionsListQuery("");
     function handleRefresh() {
         refetch();
     }

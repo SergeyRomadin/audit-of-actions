@@ -11,7 +11,7 @@ import {
     selectAuditOfActions,
     setActionsList,
 } from "../../Redux/auditOfActionsSlice";
-import { actionsApi } from "../../Redux/services/actionsApi";
+import { auditApi } from "../../Redux/services/auditApi";
 import Snackbar from "@mui/material/Snackbar";
 import { Box } from "@mui/material";
 
@@ -47,8 +47,7 @@ export default function CollapsibleTable() {
         },
         [sort]
     );
-    const { data, isError, isLoading } =
-        actionsApi.useFetchActionsListQuery("");
+    const { data, isError, isLoading } = auditApi.useFetchActionsListQuery("");
     const dispatch = useAppDispatch();
     const auditOfActionsState = useAppSelector(selectAuditOfActions);
 
